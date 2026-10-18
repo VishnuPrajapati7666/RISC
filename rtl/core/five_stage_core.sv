@@ -74,6 +74,8 @@ module five_stage_core (
   logic [31:0] fetch_pred_target;
   logic [31:0] fetch_next_pc;
   logic prediction_miss;
+  logic        branch_taken;
+  logic [31:0] branch_target;
 
   ctrl_signals_t id_ctrl;
   imm_sel_e id_imm_sel;
@@ -134,8 +136,6 @@ module five_stage_core (
   logic [31:0] ex_op_a;
   logic [31:0] ex_op_b;
   logic [31:0] ex_alu_result;
-  logic        branch_taken;
-  logic [31:0] branch_target;
 
   assign ex_op_a = (id_ex_ctrl.alu_src_a == ALU_SRC_A_PC) ?
                    id_ex_pc : ex_rs1_forwarded;
